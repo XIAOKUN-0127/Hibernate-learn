@@ -1,0 +1,45 @@
+一、hibernate的环境搭建
+1、导入jar包 
+  数据库驱动包和hibernatey->lib->requried的所有jar包
+2、写配置
+ hibernate.cfg.xml配置 
+   1)数据库连接的基本信息
+     连接数据库的username、password、url、driver_class
+   2)hibernate的配置
+     数据库方言(必须的配置)
+     输出sql语句  show_sql true
+     格式化sql语句  format_sql true
+     自动生成数据表的策略 hbm2ddl.auto  update/create/create-drop/validate四种取值
+   3)hibernate的映射文件的注册
+   <mapping resource="com/hibernate06/bean/User.hbm.xml"/>注册映射文件  resource写文件夹路径
+   <mapping class="com.hibernate06.bean.User"/> 当使用注解时 没有映射文件  通过注册实体类 解析注解 生成数据表
+  User.hbm.xml映射文件
+  	class标签  一个映射文件可有多个 但不推荐
+  	  name 指定类的全类名
+  	  table 指定表名
+  	  标签
+  	  id 标识属性  <generator class="native"> class指定主键生成策略
+  	  propery 普通属性    name指定属性名  type="java.lang.Integer"属性类型
+  	    <colmn name="表的列名"> name指定属性对应的列名
+  	   
+  	 其它的关联映射标签
+  	   <one-to-many>
+  	   <one-to-one>
+  	   <many-to-one>
+  	   <set>
+  	   <key>
+3、编写hhibernate的测试案列
+  1)加载配置文件
+  Configuration conf=new Configuration().configure;//默认加载配置文件 hibernate-cfg.xml(默认名)
+  2)构建SessionFacotry对象
+  ServiceRegistry serviceRegistry=new ServiceRegistryBuilder()
+						      .applySettings(configuration.getProperties())
+						      .buildServiceRegistry();
+  SessionFacotry sessionFactory=configuration.buildSessionFactory(serviceRegistry);
+  3)获得数据库会话
+  Session session=sessionFactory.openSession();
+  4)开启事务
+  Transaction transaction=session.beginTransation();
+  5)操作
+  6)提交事务
+  7)关闭session、关闭sessionFactory

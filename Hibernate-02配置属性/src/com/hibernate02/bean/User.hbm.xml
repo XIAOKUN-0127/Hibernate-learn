@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2020-12-27 10:39:08 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate02.bean.User" table="tb_user">
+        <id name="uid" type="int">
+            <column name="UID" />
+            <!-- 指定主键生成方式   native 使用数据库本地方式 -->
+            <generator class="native" />
+        </id>
+        <property name="uname" type="java.lang.String">
+            <column name="UNAME" />
+        </property>
+        <property name="birthday" type="java.util.Date">
+            <column name="BIRTHDAY" />
+        </property>
+    </class>
+</hibernate-mapping>

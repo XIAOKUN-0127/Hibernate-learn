@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2020-12-31 11:52:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate06.bean.Order" table="tb_order">
+        <id name="oid" type="java.lang.Integer">
+            <column name="OID" />
+            <generator class="native"/>
+        </id>
+        <property name="oname" type="java.lang.String">
+            <column name="ONAME" />
+        </property>
+        <!-- 多对一关联映射 -->
+        <!-- 
+        	name:多对一的实体类属性 
+        	class:该属性对应的类的全路径
+        	<column>外键列
+        	  name:指定外键列名称   并不一定和customer表的对应列  名称一样
+        	  inverse:控制反转属性  为 true则为被动方  false为主动方  没有设置就双方都维护   多的一端为false有助于性能改善
+         -->
+        <many-to-one name="customer" class="com.hibernate06.bean.Customer" >
+            <column name="customer_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

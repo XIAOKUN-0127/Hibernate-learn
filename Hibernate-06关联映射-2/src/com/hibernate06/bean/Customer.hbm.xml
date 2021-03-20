@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2020-12-31 11:52:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<!-- class标签里 可以指定package包名 -->
+    <class name="com.hibernate06.bean.Customer" table="tb_customer">
+        <id name="cid" type="java.lang.Integer">
+            <column name="CID" />
+            <generator class="native" />
+        </id>
+        <property name="cname" type="java.lang.String">
+            <column name="CNAME" />
+        </property>
+        
+        <!-- 一对多
+        	name:实体类的set集合名
+        	table:指定元素对应的数据表  存放的表
+        	cascade:级联 删除
+         -->
+        <set name="orders" table="tb_order" inverse="true" cascade="delete-orphan">
+        	<!-- 指定外键名称  与order里的外键指定名称一样 -->
+        	<key column="customer_id"></key>
+        	<!-- 映射类型  一对多  class指定元素全类名称 -->
+        	<one-to-many class="com.hibernate06.bean.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

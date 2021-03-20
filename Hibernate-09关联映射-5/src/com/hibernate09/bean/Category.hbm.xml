@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-1-2 9:16:14 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate09.bean.Category" table="CATEGORY">
+        <id name="categoryId" type="java.lang.Integer">
+            <column name="CATEGORYID" />
+            <generator class="assigned" />
+        </id>
+        <property name="categoryName" type="java.lang.String">
+            <column name="CATEGORYNAME" />
+        </property>
+        <!-- 
+        	name:当前实体类的set集合属性名称
+			table:中间表的名称
+		key->column->name属性:当前表的主键在中间表的列名
+		 -->
+        <set name="items" table="category_item">
+            <key>
+                <column name="C_ID" />
+            </key>
+            <!-- 
+            	class：指定集合的元素全类名
+            	column:集合元素对应的表的主键 在中间表列名
+            	中间表把多对多的两个表的主键关联为外键  同时又是联合主键
+            	 -->
+            <many-to-many class="com.hibernate09.bean.Item" column="I_ID"/>
+        </set>
+    </class>
+</hibernate-mapping>

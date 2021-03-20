@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-1-2 15:16:55 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate10.bean.Employee" table="GG_EMPLOYEE">
+        <id name="eid" type="java.lang.Integer">
+            <column name="E_ID" />
+            <generator class="native" />
+        </id>
+        <property name="ename" type="java.lang.String">
+            <column name="E_NAME" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="AGE" />
+        </property>
+        <many-to-one name="department" class="com.hibernate10.bean.Department">
+            <column name="DEPARTMENT_ID"/>
+        </many-to-one>
+    </class>
+    <!-- 命名查询  -->
+    <query name="enameQuery"><![CDATA[from Employee e where e.ename like :ename]]></query>
+</hibernate-mapping>

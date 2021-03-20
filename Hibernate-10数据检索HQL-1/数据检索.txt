@@ -1,0 +1,6 @@
+from Employee e where e.name=? and e.pwd= :pwd
+select e.name,e.pwd from Employee e 
+<query>
+<!CDATA[查询语句]>
+
+</>

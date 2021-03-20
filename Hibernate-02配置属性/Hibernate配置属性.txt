@@ -1,0 +1,6 @@
+hibernate配置属性
+
+hbm2ddl.auto 值为 create  每次都创建新表覆盖旧表
+hbm2ddl.auto 值为 create-drop  sessionFactroy.close();表被删除
+hbm2ddl.auto 值为 update  不改变原来表结构 有新的结构 添加进去
+hbm2ddl.auto 值为 validate  当表不存在或表结构变化 会抛出异常

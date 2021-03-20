@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2020-12-31 19:06:44 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate07.bean.Manager" table="tb_manager">
+        <id name="mgrId" type="java.lang.Integer">
+            <column name="MGR_ID" />
+            <generator class="native" />
+        </id>
+        <property name="mgrIdName" type="java.lang.String">
+            <column name="MGR_NAME" />
+        </property>
+        <!-- property-ref:指定department.manager为关联属性（默认使用主键） -->
+        <one-to-one name="department" class="com.hibernate07.bean.Department" property-ref="manager"></one-to-one>
+    </class>
+</hibernate-mapping>

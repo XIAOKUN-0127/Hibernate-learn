@@ -1,0 +1,6 @@
+hibernate 常用方法
+1.get()
+2.load()
+3.save()
+4.saveOrUpdate()
+5.find()

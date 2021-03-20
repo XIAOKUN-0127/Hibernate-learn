@@ -1,0 +1,31 @@
+hibernate环境搭建步骤
+ 1.导包
+   1)数据库驱动
+   2)hibernate必须的包  required里面的全部jar包
+ 2.编写POJO类(VO值对象)
+   1) 不包含业务逻辑的实体类
+   2)不实现任和接口  低侵入式框架
+   3)必须有无参构造方法   hibernate底层生成代理
+ 3.编写hibernate.cfg.xml配置文件
+   1)数据库的连接信息配置
+   2)hibernate的配置
+      show_sql:输出sql到控制台
+      format_sql:格式化sql
+      dialect:指定数据库方言  标识不同数据库 底层生成的sql不一样  例如oracle和mysql对分页的sql的区别
+      hbm2ddl.auto:根据映射文件自动生成数据表的策略
+         create 每次都创建新表 
+         create-drop sessionFactory一旦关闭表就销毁
+         update 不改变原表的结构 当有新的改变就加入
+         vai 表结构与原结构不一样就抛出异常
+ 4.根据POJO利用hibernate插件生成hibernate的映射文件
+    
+ 5.修改映射文件内容
+       主键生成策略的修改   native
+ 6.编写测试
+   加载默认hibernate.cfg.xml Configuration cof=new Configuration().configure();
+   构建   SessionFactory sessionFactroy=cof.buildSessionFactroy();
+   构建   Session session=sessionFactroy.openSession();
+   开启事务  Transaction transaction=session.beginTransaction();
+   操作 增删改 加载  查询
+   提交事务 trasaction.commit();
+   关闭资源  session.close();sessionFactroy.close();

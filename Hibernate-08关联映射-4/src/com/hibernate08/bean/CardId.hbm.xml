@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-1-2 8:36:18 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate08.bean.CardId" table="CARDID">
+        <id name="cid" type="java.lang.Integer">
+            <column name="CID" />
+            <generator class="foreign" ><!-- 修改主键生成方式 为外键方式  即参照其他主键-->
+            <param name="property">people</param><!-- 参数指定主键生成的参照对象   即为关联的属性 -->
+            </generator>
+            
+        </id>
+        <property name="cardNo" type="java.lang.String">
+            <column name="CARDNO" />
+        </property>
+        <!--  constrained="true"在主键上添加外键关联-->
+        <one-to-one name="people" class="com.hibernate08.bean.People" constrained="true"></one-to-one>
+    </class>
+</hibernate-mapping>

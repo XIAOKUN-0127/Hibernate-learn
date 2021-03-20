@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2020-12-29 13:23:05 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate05.bean.Publisher" table="tb_publisher">
+        <id name="pid" type="java.lang.Integer">
+            <column name="PID" />
+            <generator class="native" />
+        </id>
+        <property name="pname" type="java.lang.String">
+            <column name="PNAME" />
+        </property>
+        <!-- 
+        	一对多 关联 <set>集合
+        	name表示一的一端集合属性名称
+        	key的colmn表示关联的外键  底层通过改制查询  book表
+        	one-to-many的class是集合的元素类型
+         -->
+        <set name="books" >
+        	<key column="pid"></key>
+        	<one-to-many class="com.hibernate05.bean.Book"/>
+        </set>
+    </class>
+</hibernate-mapping>
